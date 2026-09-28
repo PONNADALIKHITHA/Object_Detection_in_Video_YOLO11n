@@ -12,7 +12,9 @@ DEFAULT_OUTPUT_DIR = Path("outputs")
 DEFAULT_RESULTS_DIR = Path("results")
 
 
-def process_video(model, input_path, output_path, show=False, conf=0.25):
+def process_video(
+    model, input_path, output_path, show=False, conf=0.25, progress_callback=None
+):
     """Run YOLO11n inference continuously on every frame of a video."""
     input_path = Path(input_path)
     output_path = Path(output_path)
@@ -24,6 +26,7 @@ def process_video(model, input_path, output_path, show=False, conf=0.25):
 
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     fps = cap.get(cv2.CAP_PROP_FPS)
     if fps <= 0:
         fps = 25.0
@@ -60,12 +63,16 @@ def process_video(model, input_path, output_path, show=False, conf=0.25):
 
             writer.write(annotated)
 
+            frame_count += 1
+            if progress_callback and (
+                frame_count % max(1, int(fps)) == 0 or frame_count == total_frames
+            ):
+                progress_callback(frame_count, total_frames)
+
             if show:
                 cv2.imshow("YOLO11n - Object Detection in Video", annotated)
                 if cv2.waitKey(1) & 0xFF == ord("q"):
                     break
-
-            frame_count += 1
 
     finally:
         cap.release()

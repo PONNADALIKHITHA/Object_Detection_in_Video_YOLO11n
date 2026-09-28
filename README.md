@@ -63,6 +63,23 @@ The videos should contain real objects suitable for general YOLO object detectio
 
 ## 4. Run the project
 
+### Run the Streamlit app
+
+```bash
+streamlit run streamlit_app.py
+```
+
+The app lets you choose a bundled sample clip or upload an MP4, MOV, AVI, or MKV video. It displays the annotated result and lets you download it.
+
+### Deploy on Streamlit Community Cloud
+
+1. Open [share.streamlit.io](https://share.streamlit.io/) and sign in with GitHub.
+2. Select this repository and the `main` branch.
+3. Set the app file path to `streamlit_app.py`, then select **Deploy**.
+4. The first startup downloads the YOLO11n weights. Allow a little time for the model and dependencies to initialize.
+
+The app processes uploaded files temporarily. Streamlit Community Cloud has resource limits, so very long or high-resolution videos may take a while or exceed available memory.
+
 ### Process all three test cases
 
 ```bash
