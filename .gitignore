@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+*.pt
+.ipynb_checkpoints/
+outputs/*.mp4
+results/detection_summary.csv
