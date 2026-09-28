@@ -91,6 +91,8 @@ Processed videos are written to `outputs/`.
 
 The program also writes a detection summary to `results/detection_summary.csv`.
 
+Download the processed sample videos from the [YOLO11n output release](https://github.com/PONNADALIKHITHA/Object_Detection_in_Video_YOLO11n/releases/tag/outputs-2026-09-28).
+
 ## 6. Notebook
 
 Open:
